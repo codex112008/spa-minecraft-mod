@@ -1,4 +1,8 @@
 {
-  "entity.spamod.sunflower_summon": "Sunflower",
-  "entity.spamod.sun_beam": "Sun Beam"
+  "item.spa.floral_staff": "Floral Staff",
+
+  "entity.spa.sunflower_summon": "Sunflower",
+  "entity.spa.sun_beam": "Sun Beam",
+
+  "itemgroup.spa.spa_items": "Super Penis Adventure Items"
 }

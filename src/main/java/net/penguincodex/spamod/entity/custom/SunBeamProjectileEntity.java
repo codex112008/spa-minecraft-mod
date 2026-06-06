@@ -62,6 +62,11 @@ public class SunBeamProjectileEntity extends ProjectileEntity {
     }
 
     @Override
+    protected boolean canHit(Entity entity) {
+        return super.canHit(entity) && !(entity instanceof AbstractFloralSummonEntity);
+    }
+
+    @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
 

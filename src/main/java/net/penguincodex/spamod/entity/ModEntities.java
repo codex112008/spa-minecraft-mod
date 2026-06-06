@@ -28,7 +28,7 @@ public class ModEntities {
                     .dimensions(0.4f, 0.2f).build());
 
     public static void registerModEntities(){
-        SPA.LOGGER.info("Registering Mod Entities for" + SPA.MOD_ID);
+        SPA.LOGGER.info("Registering Mod Entities for " + SPA.MOD_ID);
     }
 
     public static void registerModEntitiesAttributes(){

@@ -5,18 +5,17 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
 import net.minecraft.world.World;
 import net.penguincodex.spamod.entity.ModEntities;
 
-public class SunflowerSummonEntity extends MobEntity implements RangedAttackMob {
+public class SunflowerSummonEntity extends AbstractFloralSummonEntity implements RangedAttackMob {
     // Statuses track animation states in server side
     private static final byte FIRE_ANIMATION_STATUS = 1;
     private static final byte WIND_DOWN_ANIMATION_STATUS = 2;
@@ -31,32 +30,34 @@ public class SunflowerSummonEntity extends MobEntity implements RangedAttackMob 
     public int windDownAnimTimeout = 0;
     public final AnimationState windDownAnimationState = new AnimationState();
 
-    private final LivingEntity summoner;
     private LivingEntity target;
 
     public SunflowerSummonEntity(World world, LivingEntity summoner){
         super(ModEntities.SUNFLOWER_SUMMON, world);
+        this.dropItem = Items.SUNFLOWER;
         this.summoner = summoner;
     }
 
     public SunflowerSummonEntity(EntityType<? extends MobEntity> entityType, World world) {
         super(entityType, world);
-        this.summoner = null;
+        this.dropItem = Items.SUNFLOWER;
     }
 
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new ProjectileAttackGoal(this, 0, ATTACK_INTERVAL_MIN, ATTACK_INTERVAL_MAX, ATTACK_RADIUS));
-        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 4f));
-        this.goalSelector.add(2, new LookAroundGoal(this));
 
-        this.targetSelector.add(0, new ActiveTargetGoal<>(this, HostileEntity.class, true));
+        // Replace this with a better custom goal like wolves
+        if (this.summoner instanceof HostileEntity){
+            this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        }
+        else {
+            this.targetSelector.add(0, new ActiveTargetGoal<>(this, HostileEntity.class, true));
+        }
     }
 
     public static DefaultAttributeContainer.Builder createAttributes(){
-        return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000)
+        return AbstractFloralSummonEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6);
     }
 
@@ -131,12 +132,4 @@ public class SunflowerSummonEntity extends MobEntity implements RangedAttackMob 
             this.getWorld().spawnEntity(sunBeamProjectile);
         }
     }
-
-    @Override
-    public boolean isPushable() {
-        return false;
-    }
-
-    @Override
-    public boolean isPushedByFluids() { return false; }
 }
