@@ -8,7 +8,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.penguincodex.spamod.SPA;
-import net.penguincodex.spamod.entity.custom.SunflowerSummonEntity;
+import net.penguincodex.spamod.entity.custom.sunflower_summon.SunflowerSummonEntity;
 
 public class SunflowerSummonEntityModel<T extends SunflowerSummonEntity> extends SinglePartEntityModel<T> {
     public static final EntityModelLayer SUNFLOWER_SUMMON = new EntityModelLayer(Identifier.of(SPA.MOD_ID, "sunflower_summon"), "main");

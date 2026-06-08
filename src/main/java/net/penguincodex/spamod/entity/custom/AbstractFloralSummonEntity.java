@@ -9,19 +9,25 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractFloralSummonEntity extends MobEntity {
     protected static final int LIFESPAN = 600;
 
-    protected LivingEntity summoner;
-    protected Item dropItem = Items.AIR;
+    protected final Random random = Random.create();
+    protected final Item summonItem;
 
-    protected AbstractFloralSummonEntity(EntityType<? extends MobEntity> entityType, World world) {
+    protected LivingEntity summoner;
+
+    private final float summonItemDropChance;
+
+    protected AbstractFloralSummonEntity(EntityType<? extends MobEntity> entityType, World world, float summonItemDropChance, Item summonItem) {
         super(entityType, world);
         this.summoner = null;
+        this.summonItemDropChance = summonItemDropChance;
+        this.summonItem = summonItem;
     }
 
     @Override
@@ -40,18 +46,19 @@ public abstract class AbstractFloralSummonEntity extends MobEntity {
     public void tick() {
         super.tick();
 
-        if (this.age >= LIFESPAN || this.summoner.isDead()){
-            DespawnSummon();
+        if (this.age >= LIFESPAN || (this.summoner != null && this.summoner.isDead())){
+            despawnSummon();
         }
     }
 
     @Override
     protected void onKilledBy(@Nullable LivingEntity adversary) {
-        DespawnSummon();
+        despawnSummon();
     }
 
-    private void DespawnSummon(){
-        this.dropItem(dropItem);
+    private void despawnSummon(){
+        if (random != null && random.nextFloat() < summonItemDropChance)
+            this.dropItem(summonItem);
         this.discard();
     }
 

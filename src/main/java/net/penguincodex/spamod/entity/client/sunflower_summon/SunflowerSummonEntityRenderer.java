@@ -6,7 +6,7 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.penguincodex.spamod.SPA;
-import net.penguincodex.spamod.entity.custom.SunflowerSummonEntity;
+import net.penguincodex.spamod.entity.custom.sunflower_summon.SunflowerSummonEntity;
 
 public class SunflowerSummonEntityRenderer extends MobEntityRenderer<SunflowerSummonEntity, SunflowerSummonEntityModel<SunflowerSummonEntity>> {
     public SunflowerSummonEntityRenderer(EntityRendererFactory.Context context) {

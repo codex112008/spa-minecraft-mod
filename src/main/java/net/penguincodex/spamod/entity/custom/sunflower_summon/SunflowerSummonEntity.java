@@ -1,4 +1,4 @@
-package net.penguincodex.spamod.entity.custom;
+package net.penguincodex.spamod.entity.custom.sunflower_summon;
 
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 import net.penguincodex.spamod.entity.ModEntities;
+import net.penguincodex.spamod.entity.custom.AbstractFloralSummonEntity;
 
 public class SunflowerSummonEntity extends AbstractFloralSummonEntity implements RangedAttackMob {
     // Statuses track animation states in server side
@@ -33,14 +34,16 @@ public class SunflowerSummonEntity extends AbstractFloralSummonEntity implements
     private LivingEntity target;
 
     public SunflowerSummonEntity(World world, LivingEntity summoner){
-        super(ModEntities.SUNFLOWER_SUMMON, world);
-        this.dropItem = Items.SUNFLOWER;
+        this(world, summoner, 0f);
+    }
+
+    public SunflowerSummonEntity(World world, LivingEntity summoner, float summonItemDropChance){
+        super(ModEntities.SUNFLOWER_SUMMON, world, summonItemDropChance, Items.SUNFLOWER);
         this.summoner = summoner;
     }
 
     public SunflowerSummonEntity(EntityType<? extends MobEntity> entityType, World world) {
-        super(entityType, world);
-        this.dropItem = Items.SUNFLOWER;
+        super(entityType, world, 0, Items.SUNFLOWER);
     }
 
     @Override

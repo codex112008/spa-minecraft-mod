@@ -1,4 +1,4 @@
-package net.penguincodex.spamod.entity.custom;
+package net.penguincodex.spamod.entity.custom.sunflower_summon;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.penguincodex.spamod.entity.ModEntities;
+import net.penguincodex.spamod.entity.custom.AbstractFloralSummonEntity;
 
 public class SunBeamProjectileEntity extends ProjectileEntity {
     private final LivingEntity summonEntity;

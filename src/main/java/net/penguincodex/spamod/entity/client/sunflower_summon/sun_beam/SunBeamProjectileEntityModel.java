@@ -7,7 +7,7 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.penguincodex.spamod.SPA;
-import net.penguincodex.spamod.entity.custom.SunBeamProjectileEntity;
+import net.penguincodex.spamod.entity.custom.sunflower_summon.SunBeamProjectileEntity;
 
 public class SunBeamProjectileEntityModel extends EntityModel<SunBeamProjectileEntity> {
     public static final EntityModelLayer SUN_BEAM = new EntityModelLayer(Identifier.of(SPA.MOD_ID, "sun_beam"), "main");

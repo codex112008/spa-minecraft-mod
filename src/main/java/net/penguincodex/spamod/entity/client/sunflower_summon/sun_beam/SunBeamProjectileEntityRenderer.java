@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import net.penguincodex.spamod.SPA;
-import net.penguincodex.spamod.entity.custom.SunBeamProjectileEntity;
+import net.penguincodex.spamod.entity.custom.sunflower_summon.SunBeamProjectileEntity;
 
 public class SunBeamProjectileEntityRenderer extends EntityRenderer<SunBeamProjectileEntity> {
     protected Identifier identifier = Identifier.of(SPA.MOD_ID, "textures/entity/sunflower/sun_beam_texture.png");
